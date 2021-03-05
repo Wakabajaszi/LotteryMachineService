@@ -24,7 +24,8 @@ namespace LotteryMachineService
         {
             modelBuilder.Entity<Member>()
                  .HasOptional(a => a.Adress)
-                 .WithRequired(ab => ab.Member);
+                 .WithRequired(ab => ab.Member)
+                 .WillCascadeOnDelete(true);
             modelBuilder.Entity<Member>()
                 .HasRequired<Sex>(s => s.Sex)
                 .WithMany(g => g.Member)

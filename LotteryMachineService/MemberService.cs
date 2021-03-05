@@ -12,59 +12,86 @@ namespace LotteryMachineService
     public class MemberService : IMemberService
     {
         LotteryMachineDbContext context = new LotteryMachineDbContext();
-        public void AddMember(string name, string surname, int sex, string street, string city, string postal)
-        {
-            
 
+        public void AddMember(MemberData member)
+        {
             var newMember = new Member()
             {
-
-                Name = name,
-                Surname = surname,
-                SexId = sex,
+                Name = member.Name,
+                Surname = member.Surname,
+                SexId = member.SexId,
                 Adress = new Adress()
                 {
-                    Street = street,
-                    City = city,
-                    PostalCode = postal
-
+                    Street = member.Street,
+                    City = member.City,
+                    PostalCode = member.PostalCode
                 }
             };
-
             context.Members.Add(newMember);
             context.SaveChanges();
-            
+
         }
 
-        public Member get(int id)
+        public void DeleteMember(int id)
         {
-            var a = context.Members.FirstOrDefault(p => p.Id == id);
-            Member member = new Member
+            var member = context.Members
+                .FirstOrDefault(p => p.Id == id);
+            context.Members.Remove(member);
+            context.SaveChanges();
+        }
+
+        public void EditMember(MemberData member)
+        {
+            var memberToEdit = context.Members.FirstOrDefault(p => p.Id == member.Id);
+
+            memberToEdit.Name = member.Name;
+            memberToEdit.Surname = member.Surname;
+            memberToEdit.SexId = member.SexId;
+            memberToEdit.Adress.Street = member.Street;
+            memberToEdit.Adress.City = member.City;
+            memberToEdit.Adress.PostalCode = member.PostalCode;
+
+            context.SaveChanges();
+        }
+
+        public List<MemberData> GetAllMembers()
+        {
+            var allMembers = context.Members.ToList();
+
+            List<MemberData> members = new List<MemberData>();
+             
+            foreach (var item in allMembers)
             {
-                Name = a.Name,
-                Surname = a.Surname,
-                SexId = a.SexId,
-                Adress = a.Adress
+
+                var member = MemberDateMapper(item);
+                members.Add(member);
+            }
+
+            return members;
+        }
+
+        public MemberData GetMemberById(int id)
+        {
+            var member = context.Members.FirstOrDefault(p => p.Id == id);
+
+            return MemberDateMapper(member);
+        }
+
+        private MemberData MemberDateMapper(Member member) 
+        {
+            var memberData = new MemberData()
+            {
+                Id = member.Id,
+                Name = member.Name,
+                Surname = member.Surname,
+                SexId = (int)member.SexId,
+                Street = member.Adress.Street,
+                City = member.Adress.City,
+                PostalCode = member.Adress.PostalCode
+
             };
-            return member;
-        }
+            return memberData;
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
-
-        public CompositeType IMemberService(CompositeType composite)
-        {
-            throw new NotImplementedException();
         }
     }
 }
