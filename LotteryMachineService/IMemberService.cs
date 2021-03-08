@@ -13,10 +13,19 @@ namespace LotteryMachineService
     public interface IMemberService
     {
         [OperationContract]
-         void AddMember(string name, string surname, int sex, string street, string city, string postal);
+         void AddMember(MemberData member);
 
         [OperationContract]
-        Member get(int id);
+        List<MemberData> GetAllMembers();
+
+        [OperationContract]
+        MemberData GetMemberById(int id);
+
+        [OperationContract]
+        void EditMember( MemberData member);
+
+        [OperationContract]
+        void DeleteMember(int id);
 
         // TODO: dodaj tutaj operacje usługi
     }
@@ -24,23 +33,23 @@ namespace LotteryMachineService
     // Użyj kontraktu danych, jak pokazano w poniższym przykładzie, aby dodać typy złożone do operacji usługi.
     // Możesz dodać pliki XSD do projektu. Po skompilowaniu projektu możesz bezpośrednio użyć zdefiniowanych w nim typów danych w przestrzeni nazw „LotteryMachineService.ContractType”.
     [DataContract]
-    public class CompositeType
+    public class MemberData
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
         [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
+        public int Id { get; set; }
         [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        public string Name { get; set; }
+        [DataMember]
+        public string Surname { get; set; }
+        [DataMember]
+        public int SexId { get; set; }
+        [DataMember]
+        public string Street { get; set; }
+        [DataMember]
+        public string City { get; set; }
+        [DataMember]
+        public string PostalCode { get; set; }
+
+        
     }
 }

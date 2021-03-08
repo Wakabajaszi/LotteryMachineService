@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotteryMachineService", "LotteryMachineService\LotteryMachineService.csproj", "{10C2CEA9-2811-4682-9F4D-8F551EED9F07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestServer", "TestServer\TestServer.csproj", "{6E3A3C0A-AD2D-4A93-8491-222E31DE30E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{10C2CEA9-2811-4682-9F4D-8F551EED9F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10C2CEA9-2811-4682-9F4D-8F551EED9F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10C2CEA9-2811-4682-9F4D-8F551EED9F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3A3C0A-AD2D-4A93-8491-222E31DE30E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3A3C0A-AD2D-4A93-8491-222E31DE30E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3A3C0A-AD2D-4A93-8491-222E31DE30E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3A3C0A-AD2D-4A93-8491-222E31DE30E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
