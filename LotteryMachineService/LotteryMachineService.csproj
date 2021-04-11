@@ -66,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Adress.cs" />
-    <Compile Include="Entities\DbInitializer.cs" />
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\Sex.cs" />
     <Compile Include="IMemberService.cs" />

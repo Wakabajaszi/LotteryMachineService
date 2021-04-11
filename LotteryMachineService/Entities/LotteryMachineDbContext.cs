@@ -12,13 +12,12 @@ namespace LotteryMachineService
         public LotteryMachineDbContext()
             : base("name=LotteryMachineDbContext")
         {
-            //Database.SetInitializer(new DbInitializer());
         }
 
 
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Adress> Adresses { get; set; }
-        //public virtual DbSet<Sex> Sex { get; set; }
+        public virtual DbSet<Sex> Sex { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
